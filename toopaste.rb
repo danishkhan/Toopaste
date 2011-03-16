@@ -7,7 +7,7 @@ require 'dm-timestamps'
 require 'syntaxi'
 require 'newrelic_rpm'
 
-DataMapper.setup(:default, "mysql://localhost/toopaste")
+DataMapper.setup(:default, "mysql://localhost/Toopaste")
 
 class Snippet
   include DataMapper::Resource
