@@ -14,11 +14,13 @@ configure do
   # check current env
   environment = Sinatra::Application.environment
   # set database connection
+  @USERNAME = settings["#{environment}"]["username"]
+  @PASSWORD = settings["#{environment}"]["password"]
   DataMapper.setup(:default, {
     :adapter => 'mysql',
     :host    => 'localhost',
-    :username => "#{settings["username"]}",
-    :password > "#{settings["password"]}",
+    :username => @USERNAME,
+    :password => @PASSWORD,
     :database => 'toopaste'
   })
 end
