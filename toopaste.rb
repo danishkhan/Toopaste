@@ -7,7 +7,17 @@ require 'dm-timestamps'
 require 'syntaxi'
 require 'newrelic_rpm'
 
-DataMapper.setup(:default, "mysql://localhost/toopaste")
+configure do
+  # load YAML content
+  content = File.new(File.expand_path(File.dirname(__FILE__)) + '/config/database.yml').read
+  settings = YAML::load content
+  # check current env
+  environment = Sinatra::Application.environment
+  # set database connection
+  DataMapper.setup(:default, "mysql://localhost/toopaste")
+  @USERNAME = settings["#{environment}"]["username"]
+  @PASSWORD = settings["#{environment}"]["password"]
+end
 
 configure :test do
   DataMapper.setup(:default, "sqlite::memory:")
@@ -36,6 +46,11 @@ class Snippet
 end
 
 DataMapper.auto_upgrade!
+
+# HTTP authentication required before actual operation
+use Rack::Auth::Basic do |username, password|
+  [username, password] == [@USERNAME, @PASSWORD]
+end
 
 # new
 get '/' do
