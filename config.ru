@@ -1,5 +1,5 @@
 require 'rubygems'
 require 'sinatra'
 
-require 'toogist'
+require 'toopaste'
 run Sinatra::Application

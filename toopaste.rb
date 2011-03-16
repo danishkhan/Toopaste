@@ -6,7 +6,7 @@ require 'dm-validations'
 require 'dm-timestamps'
 require 'syntaxi'
 
-DataMapper.setup(:default, "mysql://localhost/toogist")
+DataMapper.setup(:default, "mysql://localhost/toopaste")
 
 class Snippet
   include DataMapper::Resource
