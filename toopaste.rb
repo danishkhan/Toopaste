@@ -5,6 +5,7 @@ require 'dm-mysql-adapter'
 require 'dm-validations'
 require 'dm-timestamps'
 require 'syntaxi'
+require 'newrelic_rpm'
 
 DataMapper.setup(:default, "mysql://localhost/toopaste")
 
