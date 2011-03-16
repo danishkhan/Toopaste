@@ -12,7 +12,7 @@ class Snippet
   include DataMapper::Resource
   
   property :id,         Serial                                    # an auto-increment integer key
-  prperty  :title,      String,  :required => true, length => 32
+  prperty  :title,      String,  :required => true, :length => 32
   property :body,       Text,    :required => true                # cannot be null
   property :created_at, DateTime
   property :updated_at, DateTime
