@@ -1,5 +1,7 @@
 require 'sinatra'
 require 'dm-core'
+require 'dm-migrations'
+require 'dm-mysql-adapter'
 require 'dm-validations'
 require 'dm-timestamps'
 require 'syntaxi'
@@ -9,8 +11,9 @@ DataMapper.setup(:default, "mysql://localhost/toogist")
 class Snippet
   include DataMapper::Resource
   
-  property :id,         Serial                      # an auto-increment integer key
-  property :body,       Text,    :required => true  # cannot be null
+  property :id,         Serial                                    # an auto-increment integer key
+  prperty  :title,      String,  :required => true, length => 32
+  property :body,       Text,    :required => true                # cannot be null
   property :created_at, DateTime
   property :updated_at, DateTime
   
@@ -22,7 +25,7 @@ class Snippet
   
   def formatted_body
     replacer = Time.now.strftime('[code-%d]')
-    html = Syntaxi.new("[code lang='ruby]#{self.body.gsub('[/code]', replacer)}[/code]").process
+    html = Syntaxi.new("[code lang='ruby']#{self.body.gsub('[/code]', replacer)}[/code]").process
     "<div class=\"syntax syntax_ruby\">#{html.gsub(replacer, '[/code]')}</div>"
   end
 end
