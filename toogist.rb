@@ -10,7 +10,7 @@ class Snippet
   include DataMapper::Resource
   
   property :id,         Serial                      # an auto-increment integer key
-  property :body,       Text,    :nullable => false # cannot be null
+  property :body,       Text,    :required => true  # cannot be null
   property :created_at, DateTime
   property :updated_at, DateTime
   
