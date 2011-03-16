@@ -7,13 +7,17 @@ require 'dm-timestamps'
 require 'syntaxi'
 require 'newrelic_rpm'
 
-DataMapper.setup(:default, "mysql://localhost/Toopaste")
+DataMapper.setup(:default, "mysql://localhost/toopaste")
+
+configure :test do
+  DataMapper.setup(:default, "sqlite::memory:")
+end
 
 class Snippet
   include DataMapper::Resource
   
   property :id,         Serial                                    # an auto-increment integer key
-  property  :title,      String,  :required => true, :length => 32
+  property  :title,     String,  :required => true, :length => 32
   property :body,       Text,    :required => true                # cannot be null
   property :created_at, DateTime
   property :updated_at, DateTime

@@ -23,6 +23,7 @@ GEM
     do_mysql (0.10.3)
       data_objects (= 0.10.3)
     extlib (0.9.15)
+    newrelic_rpm (2.13.4)
     rack (1.2.2)
     rack-test (0.5.7)
       rack (>= 1.0)
@@ -51,6 +52,7 @@ DEPENDENCIES
   dm-mysql-adapter
   dm-timestamps
   dm-validations
+  newrelic_rpm
   rack-test
   rspec
   sinatra
