@@ -14,9 +14,13 @@ configure do
   # check current env
   environment = Sinatra::Application.environment
   # set database connection
-  DataMapper.setup(:default, "mysql://localhost/toopaste")
-  @USERNAME = settings["#{environment}"]["username"]
-  @PASSWORD = settings["#{environment}"]["password"]
+  DataMapper.setup(:default, {
+    :adapter => 'mysql',
+    :host    => 'localhost',
+    :username => "#{settings["username"]}",
+    :password > "#{settings["password"]}",
+    :database => 'toopaste'
+  })
 end
 
 configure :test do
@@ -46,11 +50,6 @@ class Snippet
 end
 
 DataMapper.auto_upgrade!
-
-# HTTP authentication required before actual operation
-use Rack::Auth::Basic do |username, password|
-  [username, password] == [@USERNAME, @PASSWORD]
-end
 
 # new
 get '/' do
