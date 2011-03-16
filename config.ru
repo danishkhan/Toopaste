@@ -1,5 +1,7 @@
 require 'rubygems'
-require 'sinatra'
+require 'bundler'
 
-require 'toopaste'
+Bundler.require
+
+require './toopaste'
 run Sinatra::Application
