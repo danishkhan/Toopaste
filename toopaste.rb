@@ -14,19 +14,18 @@ configure do
   # check current env
   environment = Sinatra::Application.environment
   # set database connection
+  @ADAPTER = settings["#{environment}"]["adapter"]
+  @HOST = settings["#{environment}"]["host"]
   @USERNAME = settings["#{environment}"]["username"]
   @PASSWORD = settings["#{environment}"]["password"]
+  @DB = settings["#{environment}"]["database"]
   DataMapper.setup(:default, {
-    :adapter => 'mysql',
-    :host    => 'localhost',
+    :adapter => @ADAPTER,
+    :host    => @HOST,
     :username => @USERNAME,
     :password => @PASSWORD,
-    :database => 'toopaste'
+    :database => @DB
   })
-end
-
-configure :test do
-  DataMapper.setup(:default, "sqlite::memory:")
 end
 
 class Snippet
