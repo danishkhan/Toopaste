@@ -39,7 +39,7 @@ end
 
 # create
 post '/' do
-  @snippet = Snippet.new(:body => params[:snippet_body])
+  @snippet = Snippet.new(:title => params[:snippet_title], :body => params[:snippet_body])
   if @snippet.save
     redirect "/#{@snippet.id}"
   else
