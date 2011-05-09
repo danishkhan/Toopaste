@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.2.4)
+    bouncy-castle-java (1.5.0146.1)
     data_objects (0.10.3)
       addressable (~> 2.1)
     diff-lcs (1.1.2)
@@ -20,9 +21,19 @@ GEM
       dm-core (~> 1.0.2)
     dm-validations (1.0.2)
       dm-core (~> 1.0.2)
+    do_jdbc (0.10.3-java)
+      data_objects (= 0.10.3)
     do_mysql (0.10.3)
       data_objects (= 0.10.3)
+    do_mysql (0.10.3-java)
+      data_objects (= 0.10.3)
+      do_jdbc (= 0.10.3)
+      jdbc-mysql (>= 5.0.4)
     extlib (0.9.15)
+    jdbc-mysql (5.1.13)
+    jruby-openssl (0.7.4)
+      bouncy-castle-java
+    jruby-rack (1.0.8)
     newrelic_rpm (2.13.4)
     rack (1.2.2)
     rack-test (0.5.7)
@@ -42,8 +53,13 @@ GEM
     syntaxi (0.5.0)
       syntax (= 1.0.0)
     tilt (1.2.2)
+    trinidad (1.1.1)
+      jruby-rack (>= 1.0.6)
+      trinidad_jars (>= 1.0.0)
+    trinidad_jars (1.0.1)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
@@ -52,8 +68,11 @@ DEPENDENCIES
   dm-mysql-adapter
   dm-timestamps
   dm-validations
+  jdbc-mysql
+  jruby-openssl
   newrelic_rpm
   rack-test
   rspec
   sinatra
   syntaxi
+  trinidad

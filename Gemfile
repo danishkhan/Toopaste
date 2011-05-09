@@ -8,6 +8,9 @@ gem "dm-migrations"
 gem "dm-mysql-adapter"
 gem "syntaxi"
 gem "newrelic_rpm"
+gem "jruby-openssl"
+gem "trinidad"
+gem "jdbc-mysql", :require => false
 
 group :test do
   gem "rspec"
